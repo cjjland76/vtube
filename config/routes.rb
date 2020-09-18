@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  resources :videos
-  devise_for :users do
+  devise_for :users 
+  resources :videos do
     resources :comments
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

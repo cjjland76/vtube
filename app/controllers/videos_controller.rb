@@ -15,7 +15,8 @@ class VideosController < ApplicationController
   # GET /videos/1.json
   def show
     @video.increment!(:view_count)
-
+    @comment = Comment.new
+    @comments = @video.comments.includes(:user)
   end
 
   # GET /videos/new
