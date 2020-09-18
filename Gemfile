@@ -62,6 +62,7 @@ gem 'bootstrap'
 gem 'font-awesome-rails'
 gem 'carrierwave'
 gem 'kaminari'
+gem "aws-sdk-s3", require: false
 
 group :production do
   gem 'rails_12factor'
