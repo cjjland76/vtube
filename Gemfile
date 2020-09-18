@@ -62,3 +62,7 @@ gem 'bootstrap'
 gem 'font-awesome-rails'
 gem 'carrierwave'
 gem 'kaminari'
+
+group :production do
+  gem 'rails_12factor'
+end
