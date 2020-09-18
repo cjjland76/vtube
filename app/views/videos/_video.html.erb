@@ -1,0 +1,24 @@
+<div class="col-4 mb-3">
+  <div class="card">
+  <%= image_tag video.image.url, class: "w-100" if video.image? %>
+    <div class="card-body">
+    <%= link_to video, class: "text-dark" do %>
+      <strong>
+      <%= video.title %>
+      </strong>
+      <p class="small">
+        <%= truncate video.description, length: 30 %>
+     
+        <div class="count_display text-gray small">
+          <div class="created1">
+        <%= time_ago_in_words video.created_at %>前
+          </div>
+          <div class="count1">
+        count <%= video.view_count.to_i %>
+          </div>
+        </div>
+
+      <% end %>
+    </div>
+  </div>
+</div>

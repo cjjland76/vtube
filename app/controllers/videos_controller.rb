@@ -1,15 +1,21 @@
 class VideosController < ApplicationController
+  before_action :authenticate_user!, only: [:create, :new, :edit, :destory, :update]
   before_action :set_video, only: [:show, :edit, :update, :destroy]
+  before_action :check_owner, only: [:edit, :update, :destroy]
 
   # GET /videos
   # GET /videos.json
   def index
     @videos = Video.all
+    # @videos = @videos.where("title LIKE ?", "%#{params[:q]}%") if params[:q].present?
+    @videos = @videos.page(params[:page]).per(6)
   end
 
   # GET /videos/1
   # GET /videos/1.json
   def show
+    @video.increment!(:view_count)
+
   end
 
   # GET /videos/new
@@ -25,6 +31,7 @@ class VideosController < ApplicationController
   # POST /videos.json
   def create
     @video = Video.new(video_params)
+    @video.user = current_user
 
     respond_to do |format|
       if @video.save
@@ -69,6 +76,10 @@ class VideosController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def video_params
-      params.require(:video).permit(:title, :description, :user_id, :view_count)
+      params.require(:video).permit(:title, :description, :file, :image)
+    end
+
+    def check_owner
+      redirect_to root_path unless @video.user == current_user
     end
 end
