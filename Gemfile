@@ -62,6 +62,8 @@ gem 'bootstrap'
 gem 'font-awesome-rails'
 gem 'carrierwave'
 gem 'kaminari'
+gem 'rmagick'
+gem 'fog-aws'
 gem "aws-sdk-s3", require: false
 
 group :production do
