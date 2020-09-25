@@ -6,7 +6,7 @@ class VideosController < ApplicationController
   # GET /videos
   # GET /videos.json
   def index
-    @videos = Video.all
+    @videos = Video.all.order('created_at DESC')
     @videos = @videos.where("title LIKE ?", "%#{params[:q]}%") if params[:q].present?
     @videos = @videos.page(params[:page]).per(6)
   end
@@ -77,7 +77,7 @@ class VideosController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def video_params
-      params.require(:video).permit(:title, :description, :file, :image)
+      params.require(:video).permit(:title, :description, :file)
     end
 
     def check_owner

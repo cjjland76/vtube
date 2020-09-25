@@ -8,6 +8,5 @@ class Video < ApplicationRecord
     validates :title
     validates :description
     validates :file
-    validates :image
   end
 end
